@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'pages/home_page.dart';
+import 'package:tilhaapp/pages/login_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,9 +9,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          primarySwatch: Colors.red,
-          textTheme: GoogleFonts.pacificoTextTheme()),
-      home: const HomePage(),
+          primarySwatch: Colors.blue,
+          //textTheme: GoogleFonts.pacificoTextTheme()),
+          textTheme: GoogleFonts.robotoTextTheme()),
+      home: const LoginPage(),
+      //home: const HomePage(),
     );
   }
 }
