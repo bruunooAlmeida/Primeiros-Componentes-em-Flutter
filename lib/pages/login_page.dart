@@ -19,66 +19,82 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 100,
+                height: 50,
               ),
-              Container(
-                width: 150,
-                height: 150,
-                color: const Color.fromARGB(255, 255, 255, 255),
-                child: const Icon(Icons.person, size: 125, color: Colors.blue),
+              Row(
+                children: [
+                  Expanded(child: Container()),
+                  Expanded(
+                    flex: 8,
+                    child: Image.network(
+                      "https://hermes.digitalinnovation.one/assets/diome/logo.png",
+                    ),
+                  ),
+                  Expanded(child: Container()),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                "Já tem cadastro ?",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text("Faça seu Login e make the change_",
+                  style: TextStyle(fontSize: 14)),
+              const SizedBox(
+                height: 10,
+              ),
+              const SizedBox(
+                height: 50,
               ),
               Container(
                   width: double.infinity,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                  margin: const EdgeInsets.symmetric(horizontal: 40),
                   height: 30,
                   alignment: Alignment.center,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      Expanded(
+                      const Expanded(
                         flex: 3,
-                        child: const Text("Informe seu Email:"),
+                        child: Text("Informe o Email:"),
                       ),
-                      Expanded(
+                      const Expanded(
                         flex: 3,
-                        child: const Text("Email"),
-                      ),
+                        child: Text("Email"),
+                      )
                     ],
                   )),
               Container(
                 width: double.infinity,
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 40),
                 height: 30,
                 alignment: Alignment.center,
                 child: Row(
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      const Text("Informe a Senha"),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      const Text("Senha"),
+                      const Expanded(flex: 3, child: Text("Informe a senha:")),
+                      const Expanded(flex: 3, child: Text("Senha")),
                     ]),
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
-              Expanded(child: Container()),
               Container(
                 margin: const EdgeInsets.symmetric(
                   horizontal: 40,
                 ),
-                color: Colors.green,
+                color: Colors.deepPurpleAccent,
                 height: 30,
                 alignment: Alignment.center,
                 child: const Text("Login"),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              Expanded(child: Container()),
               Expanded(child: Container()),
               Container(
                 margin: const EdgeInsets.symmetric(
@@ -86,10 +102,22 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 height: 30,
                 alignment: Alignment.center,
-                child: const Text("Cadastro"),
+                child: const Text("Esqueci minha senha"),
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                ),
+                height: 30,
+                alignment: Alignment.center,
+                child: const Text(
+                  "Criar Conta",
+                  style: TextStyle(
+                      color: Colors.green, fontWeight: FontWeight.w600),
+                ),
               ),
               const SizedBox(
-                height: 10,
+                height: 30,
               ),
             ],
           ),
