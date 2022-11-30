@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:tilhaapp/pages/pagina1.dart';
 
@@ -35,7 +36,11 @@ class _MainPageState extends State<MainPage> {
                       child: const Text("Dados cadastráis")),
                   onTap: () {
                     Navigator.pop(context);
-                    //Navigator.push(context,MaterialPageRoute(builder: (context) => const dados_cadastrais()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            // ignore: prefer_const_constructors
+                            builder: (context) => DadosCadastraisPage()));
                   },
                 ),
                 const Divider(),
