@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tilhaapp/repositories/Linguagens_repository.dart';
 import 'package:tilhaapp/repositories/nivel_repositories.dart';
 import 'package:tilhaapp/shared/widgets/text_label.dart';
 
@@ -16,8 +17,13 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   var dataNascController = TextEditingController(text: "");
   DateTime? dataNasc;
   var nivelRepository = NivelRepository();
+  var linguagensRepository = LinguagensRepository();
+  var nivelSelecionado = "";
   var niveis = [];
-  var nivelSelecionado = '';
+  var linguagens = [];
+  var linguagensSelecionadas = [];
+  double salarioEscolhido = 0;
+
 /*
   Text returnText(String texto) {
     return Text(texto,
@@ -27,6 +33,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   @override
   void initState() {
     niveis = nivelRepository.retornaNiveis();
+    linguagens = linguagensRepository.retornaLinguagens();
     super.initState();
   }
 
@@ -37,8 +44,8 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         // ignore: prefer_const_literals_to_create_immutables
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          //  crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // ignore: prefer_const_constructors
             TextLabel(texto: "Nome"),
@@ -76,10 +83,38 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                           });
                         }))
                     .toList()),
-
+            const TextLabel(texto: "Linguagens preferidas"),
+            Column(
+                children: linguagens
+                    .map((linguagen) => CheckboxListTile(
+                        dense: true,
+                        title: Text(linguagen),
+                        value: linguagensSelecionadas.contains(linguagen),
+                        onChanged: (bool? value) {
+                          if (value!) {
+                            setState(() {
+                              linguagensSelecionadas.add(linguagen);
+                            });
+                          } else {
+                            setState(() {
+                              linguagensSelecionadas.remove(linguagen);
+                            });
+                          }
+                        }))
+                    .toList()),
+            const TextLabel(texto: "Preferencia Salarial"),
+            Slider(
+                min: 0,
+                max: 10000,
+                value: salarioEscolhido,
+                onChanged: (double value) {
+                  setState(() {
+                    salarioEscolhido = value;
+                  });
+                }),
             TextButton(
               onPressed: () {
-                print(dataNasc);
+                print(linguagensSelecionadas.length);
               },
               child: const Text("Salvar"),
             )
