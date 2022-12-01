@@ -23,6 +23,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   var linguagens = [];
   var linguagensSelecionadas = [];
   double salarioEscolhido = 0;
+  int tempoExperiencia = 0;
 
 /*
   Text returnText(String texto) {
@@ -35,6 +36,16 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
     niveis = nivelRepository.retornaNiveis();
     linguagens = linguagensRepository.retornaLinguagens();
     super.initState();
+  }
+
+  List<DropdownMenuItem<int>> returnItens(int quantidadeMaxima) {
+    var items = <DropdownMenuItem<int>>[];
+    for (var i = 0; i < quantidadeMaxima; i++) {
+      items.add(
+        DropdownMenuItem(value: i, child: Text(i.toString())),
+      );
+    }
+    return items;
   }
 
   @override
@@ -77,7 +88,6 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                         value: nivel.toString(),
                         groupValue: nivelSelecionado,
                         onChanged: (value) {
-                          print(value);
                           setState(() {
                             nivelSelecionado = value.toString();
                           });
@@ -102,7 +112,9 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                           }
                         }))
                     .toList()),
-            const TextLabel(texto: "Preferencia Salarial"),
+            TextLabel(
+                texto:
+                    "Preferencia Salarial R\$ ${salarioEscolhido.round().toString()}"),
             Slider(
                 min: 0,
                 max: 10000,
@@ -112,10 +124,19 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                     salarioEscolhido = value;
                   });
                 }),
-            TextButton(
-              onPressed: () {
-                print(linguagensSelecionadas.length);
+            const TextLabel(texto: "Tempo de Experiencia"),
+            DropdownButton(
+              value: tempoExperiencia,
+              isExpanded: true,
+              items: returnItens(50),
+              onChanged: (value) {
+                setState(() {
+                  tempoExperiencia = int.parse(value.toString());
+                });
               },
+            ),
+            TextButton(
+              onPressed: () {},
               child: const Text("Salvar"),
             )
           ],
